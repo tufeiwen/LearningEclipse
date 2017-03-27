@@ -43,17 +43,20 @@ public class MyLibrary {
 	}
 //business logic/rule
 //understand business rule by reading source code
-// write business logic code following comments.	
+// write business logic code following comments.
+// update book's person state to implement business rule
 	public boolean checkOut(Book b1, Person p1) {
+		//check how many books a person have borrowed
 		int booksOut = this.getBooksForPerson(p1).size();
 		if ((b1.getPerson() == null) && booksOut < p1.getMaximumBooks()) {
+			//if the borrowed number less than max number, then book's person property to that person
 			b1.setPerson(p1);
 			return true;
 		} else {
 			return false;
 		}
 	}
-
+//set book's person property as null
 	public boolean checkIn(Book b1) {
 		if (b1.getPerson() != null) {
 			b1.setPerson(null);
@@ -62,10 +65,11 @@ public class MyLibrary {
 			return false;
 		}
 	}
-
+//get all books which are borrowed by a certain person
 	public ArrayList<Book> getBooksForPerson(Person p1) {
 		ArrayList<Book> result = new ArrayList<Book>();
 		for (Book aBook : this.getBooks()) {
+			//get each book, compare associated person's name to input person's name
 			if ((aBook.getPerson() != null) && (aBook.getPerson().getName().equals(p1.getName()))) {
 				result.add(aBook);
 			}
@@ -75,8 +79,10 @@ public class MyLibrary {
 
 	public ArrayList<Book> getAvailableBooks() {
 		ArrayList<Book> result = new ArrayList<Book>();
+		//get each book, if the book's person property is null, it's available.
 		for (Book aBook : this.getBooks()) {
 			if (aBook.getPerson() == null) {
+				//change result to avaliableBooks would be more meaningful
 				result.add(aBook);
 			}
 		}
@@ -92,7 +98,7 @@ public class MyLibrary {
 		}
 		return result;
 	}
-
+//view for display
 	public String toString() {
 		return this.getName() + ": " + this.getBooks().size() + " books; " + this.getPeople().size() + " people.";
 	}

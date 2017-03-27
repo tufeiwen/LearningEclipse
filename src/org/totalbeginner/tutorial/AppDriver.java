@@ -5,6 +5,8 @@ public class AppDriver {
 		public static void main(String[] args) {
 			// create a new MyLibrary
 			MyLibrary testLibrary = new MyLibrary("Test Drive Library");
+			
+			//create members of library
 			//b1 better be wap
 			Book b1 = new Book("War And Peace");
 			Book b2 = new Book("Great Expectations");
@@ -14,12 +16,16 @@ public class AppDriver {
 			Person sue = new Person();
 			jim.setName("Jim");
 			sue.setName("Sue");
+			
+			//set up(init) library, library is ready for service.
 			testLibrary.addBook(b1);
 			testLibrary.addBook(b2);
 			testLibrary.addPerson(jim);
 			testLibrary.addPerson(sue);
 			System.out.println("Just created new library");
 			testLibrary.printStatus();
+			
+			//use library service
 			System.out.println("Check out War And Peace to Sue");
 			testLibrary.checkOut(b1, sue);
 			testLibrary.printStatus();
